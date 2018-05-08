@@ -1,0 +1,15 @@
+version: '3'
+services:
+  varinsh:
+    build: .
+    image: "petrepopescu21/varnish"
+    ports: 
+      - "8080:80"
+    depends_on:
+      - wp
+    environment:
+      - BACKEND_SERVICE=wp
+      - BACKEND_PORT=80
+      - CACHE_SIZE=250M
+  wp:
+    image: "appsvcorg/wordpress-alpine-php:0.3" 
